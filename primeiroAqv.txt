@@ -1,3 +1,15 @@
-x = -10 - 4 + y_2; a = -2.58679
-z = -10 - 4 + y_2; b = -2.58679
-y = -10 - 4 + y_2; c = -2.58679
+procedure start(){
+
+real f = 3.0;
+@
+texto msg = "teste
+
+if ( f >= -10) && (f < ) 
+	print("mensagem);
+	print("menÇagem");
+// exemplo de teste do lexico
+
+/* exa869 mi processadores de
+		linguagem de programacao
+
+}

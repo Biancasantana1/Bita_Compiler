@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.Token;
 import java.util.Arrays;
 
 /**
@@ -11,105 +12,130 @@ import java.util.Arrays;
  * @author tpass
  */
 public class BitaController {
-   
-     public boolean ehIdentificador(String token) {
-        //verificar se o primeiro character do token é uma letra ou não
-        if (!Character.isLetter(token.charAt(0))) {
-            return false;
+    private Token token = null;
+    
+    public static Token ehIdentificador(String palavra, int numeroLinha) {
+        if (palavra == null || palavra.isEmpty()) {
+            return null;
         }
-        for (int i = 1; i < token.length(); i++) {
-            char c = token.charAt(i);
-            //verifica se o character é uma letra ou um dígito ou se tem o sublinhado '_' 
+        char primeiroChar = palavra.charAt(0);
+        if (!Character.isLetter(primeiroChar)) {
+            return null;
+        }
+        for (int i = 1; i < palavra.length(); i++) {
+            char c = palavra.charAt(i);
             if (!Character.isLetterOrDigit(c) && c != '_') {
-                return false;
+                return null;
             }
         }
-        return true;
+        return new Token("IDE", palavra, numeroLinha);
     }
     
-    public boolean ehNumero(String token) {
+    public static Token ehNumero(String palavra, int numeroLinha) {
         boolean pontoEncontrado = false;
-        for (int i = 1; i < token.length(); i++) {
-            char c = token.charAt(i);
+        for (int i = 0; i < palavra.length(); i++) {
+            char c = palavra.charAt(i);
             if (c == '.') {
                 if (pontoEncontrado) {
-                    return false;
+                    return null;
                 } else {
                     pontoEncontrado = true;
                 }
             } else if (!Character.isDigit(c)) {
-                return false;
+                return null;
             }
         }
-        return true;
+        return new Token("NRO", palavra, numeroLinha);
     }
     
-    public boolean ehOpAritimetico(String token){
-        if(token.equals("+") || token.equals("-") || token.equals("*") ||
-            token.equals("/") || token.equals("++") || token.equals("--")){
-            return true;   
+    public static Token ehOpAritimetico(String palavra, int numeroLinha){
+        if(palavra.equals("+") || palavra.equals("-") || palavra.equals("*") ||
+            palavra.equals("/") || palavra.equals("++") || palavra.equals("--")){
+            return new Token("OPA", palavra, numeroLinha);   
         }
-        return false;
+        return null;
     }
     
-    public boolean ehOpRelacional(String token){
-        if(token.equals("!=") || token.equals("==") || token.equals("<") ||
-            token.equals(">") || token.equals(">=") || token.equals("<=") || token.equals("=")){
-            return true;   
+    
+    
+    public static Token ehOpRelacional(String palavra, int numeroLinha){
+        if(palavra.equals("!=") || palavra.equals("==") || palavra.equals("<") ||
+            palavra.equals(">") || palavra.equals(">=") || palavra.equals("<=") || palavra.equals("=")){
+            return  new Token("OPR", palavra, numeroLinha);
         }
-        return false;
+    return null;
     }
     
-    public static boolean ehDelimitadorDeComentarioDeLinha(String token) {
-        return token.startsWith("//");
+    public static Token ehDelimitadorDeComentarioDeLinha(String palavra, int numeroLinha) {
+        if (palavra.startsWith("//")) {
+            return new Token("COM", palavra, numeroLinha);
+        } else {
+            return null;
+        }
     }
 
-    public static boolean ehDelimitadorDeComentarioDeBloco(String token) {
-        return token.startsWith("/*") || token.endsWith("*/");
+    public static Token ehDelimitadorDeComentarioDeBloco(String palavra, int numeroLinha) {
+        if (palavra.startsWith("/*")) {
+            return new Token("COM", palavra, numeroLinha);
+        } else if (palavra.endsWith("*/")) {
+            return new Token("COM", palavra, numeroLinha);
+        } else {
+            return null;
+        }
     }
 
-    public static boolean ehDelimitador(String token) {
-        return ";,()[]{}".contains(token);
+    public static Token ehDelimitador(String palavra, int numeroLinha) {
+        if (";,()[]{}".contains(palavra)) {
+            return new Token("DEL", palavra, numeroLinha);
+        } else {
+            return null;
+        }
     }
     
-    public static boolean ehPalavrareservada(String token){
-        var palavrasReservadas = Arrays.asList(
-                "var", "const",
-                "struct", "procedure", "function", 
-                "start", "return", "if", "else",
-                "then", "while", "read", "print",
-                "int", "real", "boolean", "string",
-                "true", "false");
+   public static Token ehPalavraReservada(String palavra, int numeroLinha) {
+    var palavrasReservadas = Arrays.asList(
+            "var", "const",
+            "struct", "procedure", "function",
+            "start", "return", "if", "else",
+            "then", "while", "read", "print",
+            "int", "real", "boolean", "string",
+            "true", "false");
+
+    if (palavrasReservadas.contains(palavra)) {
+        return new Token("PRE", palavra, numeroLinha);
+    } else {
+        return null;
+    }
+}
+
+    
+    public static Token ehCaracters(String palavra, int numeroLinha) {
+        if (palavra.length() == 0) {
+            return null; // Palavra vazia não é uma cadeia de caracteres válida
+        }
         
-        return palavrasReservadas.contains(token);
-    }
-    
-    public static boolean ehCaracters(String input) {
-        if (input.charAt(0) != '"' || input.charAt(input.length() - 1) != '"') {
-            return false; // Cadeia de caracteres deve começar e terminar com aspas duplas
+        if (palavra.charAt(0) != '"' || palavra.charAt(palavra.length() - 1) != '"') {
+            return null; // Cadeia de caracteres deve começar e terminar com aspas duplas
         }
 
-        for (int i = 1; i < input.length() - 1; i++) {
-            char c = input.charAt(i);
+        for (int i = 1; i < palavra.length() - 1; i++) {
+            if (i < palavra.length() && palavra.charAt(i) == '\\') {
+                i++;
+                continue;
+            }
+            char c = palavra.charAt(i);
             if (c == '\\') {
                 // Ignora o caractere de escape e o próximo caractere
                 i++;
-            } else if (!Character.isLetterOrDigit(c) && !isSymbol(c)) {
-                // Caractere inválido na cadeia de caracteres
-                return false;
+            } else if (!Character.isLetterOrDigit(c) && !ehSimbolo(c)) {
+                return null;
             }
         }
 
-        return true;
-    }
-    
-    public static boolean isSymbol(char c) {
-        String symbols = "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?`~";
-        return symbols.indexOf(c) != -1;
+        return new Token("CAD", palavra, numeroLinha);
     }
 
-
-
-
-
+    public static boolean ehSimbolo(char c) {
+        return ";,()[]{}".contains(Character.toString(c));
+    }
 }
