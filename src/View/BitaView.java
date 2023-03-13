@@ -31,7 +31,7 @@ public static void main(String[] args) throws IOException {
         while(i < palavra.length()) {
             char c = palavra.charAt(i);
             lexema = "" + c;
-            if(BitaController.ehOpRelacional(lexema, numeroLinha)){
+            if(BitaController.ehOpRelacional(lexema)){
                 if (token != null) {
                     tokenList.add(token);
                     token = null;
@@ -40,7 +40,7 @@ public static void main(String[] args) throws IOException {
                 tokenList.add(novoToken);
                 i++;
             }
-            else if(BitaController.ehOpAritimetico(lexema, numeroLinha)){
+            else if(BitaController.ehOpAritimetico(lexema)){
                 
                 if (token != null) {
                     tokenList.add(token);
@@ -51,7 +51,7 @@ public static void main(String[] args) throws IOException {
                 i++;
                 
             }
-              else if(BitaController.ehDelimitador(lexema, numeroLinha)){
+              else if(BitaController.ehDelimitador(lexema)){
                 if (token != null) {
                     tokenList.add(token);
                     token = null;
@@ -124,13 +124,13 @@ public static void main(String[] args) throws IOException {
                 lexema = "" + c;
                 int j = i+1;
                 while(j < palavra.length() && (BitaController.ehLetra(palavra.charAt(j)) 
-                        || BitaController.ehDigito(palavra.charAt(j)) || palavra.charAt(j) == '"')) {
+                        || Character.isDigit(palavra.charAt(j)) || palavra.charAt(j) == '"')) {
                     lexema += palavra.charAt(j);
                     j++;
                 }
                 i = j;
                 Token novoToken;
-                if (BitaController.ehPalavraReservada(lexema, numeroLinha)) {
+                if (BitaController.ehPalavraReservada(lexema)) {
                     novoToken = new Token("PR", lexema, numeroLinha);
                 }
                 else {
@@ -151,6 +151,9 @@ public static void main(String[] args) throws IOException {
         if (token != null) {
             tokenList.add(token);
             token = null;
+        }
+        else if(BitaController.ehCaracters(palavra)){
+            
         }
     }
     numeroLinha++;

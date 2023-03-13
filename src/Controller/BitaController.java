@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class BitaController {
     private Token token = null;
     
-    public static boolean ehIdentificador(String palavra, int numeroLinha) {
+    public static boolean ehIdentificador(String palavra) {
         if (palavra == null || palavra.isEmpty()) {
             return false;
         }
@@ -44,7 +44,7 @@ public class BitaController {
         
     }
     
-    public static boolean ehOpAritimetico(String palavra, int numeroLinha){
+    public static boolean ehOpAritimetico(String palavra){
         if(palavra.equals("+") || palavra.equals("-") || palavra.equals("*") ||
             palavra.equals("/") || palavra.equals("++") || palavra.equals("--")){
             return true;   
@@ -54,7 +54,7 @@ public class BitaController {
     
     
     
-    public static boolean ehOpRelacional(String palavra, int numeroLinha){
+    public static boolean ehOpRelacional(String palavra){
         if(palavra.equals("!=") || palavra.equals("==") || palavra.equals("<") ||
             palavra.equals(">") || palavra.equals(">=") || palavra.equals("<=") || palavra.equals("=")){
             return  true;
@@ -62,7 +62,7 @@ public class BitaController {
     return false;
     }
     
-    public static boolean ehDelimitadorDeComentarioDeLinha(String palavra, int numeroLinha) {
+    public static boolean ehDelimitadorDeComentarioDeLinha(String palavra) {
         if (palavra.startsWith("//")) {
             return true;
         } else {
@@ -70,7 +70,7 @@ public class BitaController {
         }
     }
 
-    public static boolean ehDelimitadorDeComentarioDeBloco(String palavra, int numeroLinha) {
+    public static boolean ehDelimitadorDeComentarioDeBloco(String palavra) {
         if (palavra.startsWith("/*")) {
             return true;
         } else if (palavra.endsWith("*/")) {
@@ -80,7 +80,7 @@ public class BitaController {
         }
     }
 
-    public static boolean ehDelimitador(String palavra, int numeroLinha) {
+    public static boolean ehDelimitador(String palavra) {
         if (";,()[]{}.".contains(palavra)) {
             return true;
         } else {
@@ -88,24 +88,23 @@ public class BitaController {
         }
     }
     
-   public static boolean ehPalavraReservada(String palavra, int numeroLinha) {
-    var palavrasReservadas = Arrays.asList(
-            "var", "const",
-            "struct", "procedure", "function",
-            "start", "return", "if", "else",
-            "then", "while", "read", "print",
-            "int", "real", "boolean", "string",
-            "true", "false");
+   public static boolean ehPalavraReservada(String palavra) {
+        var palavrasReservadas = Arrays.asList(
+                "var", "const",
+                "struct", "procedure", "function",
+                "start", "return", "if", "else",
+                "then", "while", "read", "print",
+                "int", "real", "boolean", "string",
+                "true", "false");
 
-    if (palavrasReservadas.contains(palavra)) {
-        return true;
-    } else {
-        return false;
+        if (palavrasReservadas.contains(palavra)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 
-    
-    public static boolean ehCaracters(String palavra, int numeroLinha) {
+    public static boolean ehCaracters(String palavra) {
         if (palavra.length() == 0) {
             return false; // Palavra vazia não é uma cadeia de caracteres válida
         }
@@ -138,27 +137,7 @@ public class BitaController {
     public static boolean ehLetra(char c) {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
     }
-
-    public static boolean ehDigito(char c) {
-        return c >= '0' && c <= '9';
-    }
-
     
-    public static boolean ehDigitoProximo(PushbackReader reader) throws IOException {
-        int nextChar = reader.read();
-        if (nextChar == -1) {
-            return true;
-        }
-        reader.unread(nextChar);
-        return false;    }
-    private static boolean ehLetraProximo(PushbackReader reader) throws IOException {
-        int nextChar = reader.read();
-        if (nextChar == -1) {
-            return true;
-        }
-        reader.unread(nextChar);
-        return false;
-    }
     public static String[] quebraCaracter(String linha){
         String[] caracter = linha.split("[\\\\ \\\\]");
         return caracter;
