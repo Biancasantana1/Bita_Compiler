@@ -1,0 +1,459 @@
+01 PRE procedure 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL ( 7
+07 IDE f 7
+07 OPR >= 7
+07 OPR < 7
+07 DEL ) 7
+08 DEL  8
+09 DEL  9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 DEL  13
+13 IDE linguagem 13
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+15 DEL } 15
+01 NRO 01 1
+01 IDE PRE 1
+01 PRE procedure 1
+01 NRO 1 1
+02 NRO 02 2
+02 IDE DEL 2
+02 DEL  2
+02 NRO 2 2
+03 NRO 03 3
+03 IDE PRE 3
+03 PRE real 3
+03 NRO 3 3
+04 NRO 03 4
+04 IDE IDE 4
+04 IDE f 4
+04 NRO 3 4
+05 NRO 03 5
+05 IDE OPR 5
+05 OPR = 5
+05 NRO 3 5
+06 NRO 05 6
+06 IDE IDE 6
+06 IDE texto 6
+06 NRO 5 6
+07 NRO 05 7
+07 IDE IDE 7
+07 IDE msg 7
+07 NRO 5 7
+08 NRO 05 8
+08 IDE OPR 8
+08 OPR = 8
+08 NRO 5 8
+09 NRO 06 9
+09 IDE DEL 9
+09 DEL  9
+09 NRO 6 9
+10 NRO 07 10
+10 IDE PRE 10
+10 PRE if 10
+10 NRO 7 10
+11 NRO 07 11
+11 IDE DEL 11
+11 DEL ( 11
+11 NRO 7 11
+12 NRO 07 12
+12 IDE IDE 12
+12 IDE f 12
+12 NRO 7 12
+13 NRO 07 13
+13 IDE OPR 13
+13 OPR >= 13
+13 NRO 7 13
+14 NRO 07 14
+14 IDE OPR 14
+14 OPR < 14
+14 NRO 7 14
+15 NRO 07 15
+15 IDE DEL 15
+15 DEL ) 15
+15 NRO 7 15
+16 NRO 08 16
+16 IDE DEL 16
+16 DEL  16
+16 NRO 8 16
+17 NRO 09 17
+17 IDE DEL 17
+17 DEL  17
+17 NRO 9 17
+18 NRO 10 18
+18 IDE COM 18
+18 COM // 18
+18 NRO 10 18
+19 NRO 10 19
+19 IDE IDE 19
+19 IDE exemplo 19
+19 NRO 10 19
+20 NRO 10 20
+20 IDE IDE 20
+20 IDE de 20
+20 NRO 10 20
+21 NRO 10 21
+21 IDE IDE 21
+21 IDE teste 21
+21 NRO 10 21
+22 NRO 10 22
+22 IDE IDE 22
+22 IDE do 22
+22 NRO 10 22
+23 NRO 10 23
+23 IDE IDE 23
+23 IDE lexico 23
+23 NRO 10 23
+24 NRO 11 24
+24 IDE DEL 24
+24 DEL  24
+24 NRO 11 24
+25 NRO 12 25
+25 IDE COM 25
+25 COM /* 25
+25 NRO 12 25
+26 NRO 12 26
+26 IDE IDE 26
+26 IDE exa869 26
+26 NRO 12 26
+27 NRO 12 27
+27 IDE IDE 27
+27 IDE mi 27
+27 NRO 12 27
+28 NRO 12 28
+28 IDE IDE 28
+28 IDE processadores 28
+28 NRO 12 28
+29 NRO 12 29
+29 IDE IDE 29
+29 IDE de 29
+29 NRO 12 29
+30 NRO 13 30
+30 IDE DEL 30
+30 DEL  30
+30 NRO 13 30
+31 NRO 13 31
+31 IDE IDE 31
+31 IDE linguagem 31
+31 NRO 13 31
+32 NRO 13 32
+32 IDE IDE 32
+32 IDE de 32
+32 NRO 13 32
+33 NRO 13 33
+33 IDE IDE 33
+33 IDE programacao 33
+33 NRO 13 33
+34 NRO 14 34
+34 IDE DEL 34
+34 DEL  34
+34 NRO 14 34
+35 NRO 15 35
+35 IDE DEL 35
+35 DEL } 35
+35 NRO 15 35
+01 PRE procedure 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL ( 7
+07 IDE f 7
+07 OPR >= 7
+07 OPR < 7
+07 DEL ) 7
+08 DEL  8
+09 DEL  9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 DEL  13
+13 IDE linguagem 13
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+15 DEL } 15
+01 PRE procedure 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL ( 7
+07 IDE f 7
+07 OPR >= 7
+07 OPR < 7
+07 DEL ) 7
+08 DEL  8
+09 DEL  9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 DEL  13
+13 IDE linguagem 13
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+15 DEL } 15
+01 IDE tart 1
+02 DEL  2
+05 IDE te 5
+06 DEL  6
+08 IDE agem 8
+08 DEL ; 8
+09 CAD "menÇagem" 9
+09 DEL ; 9
+10 COM // exemplo de te 10
+11 DEL  11
+12 COM /* exa869 mi proce 12
+12 DEL  12
+12 IDE adore 12
+14 DEL  14
+01 IDE tart 1
+02 DEL  2
+05 IDE te 5
+06 DEL  6
+08 IDE agem 8
+08 DEL ; 8
+09 CAD "menÇagem" 9
+09 DEL ; 9
+10 COM // exemplo de te 10
+11 DEL  11
+12 COM /* exa869 mi proce 12
+12 DEL  12
+12 IDE adore 12
+14 DEL  14
+02 DEL  2
+06 DEL  6
+08 DEL ; 8
+09 CAD "menÇagem" 9
+09 DEL ; 9
+10 COM // exemplo de teste do lexico 10
+11 DEL  11
+12 COM /* exa869 mi processadores de 12
+14 DEL  14
+01 PRE procedure 1
+01 PRE start 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+03 NRO 3 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR >= 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR < 7
+08 DEL ; 8
+09 CAD "menÇagem" 9
+09 DEL ; 9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+01 PRE procedure 1
+01 PRE start 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+03 NRO 3 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR >= 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR < 7
+08 DEL ; 8
+09 CAD "menÇagem" 9
+09 DEL ; 9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+01 PRE procedure 1
+01 PRE start 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+03 NRO 3 3
+03 NRO 0 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR >= 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR < 7
+09 CAD "menÇagem" 9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+01 PRE procedure 1
+01 PRE start 1
+02 DEL  2
+03 PRE real 3
+03 IDE f 3
+03 OPR = 3
+03 NRO 3 3
+03 NRO 0 3
+05 IDE texto 5
+05 IDE msg 5
+05 OPR = 5
+06 DEL  6
+07 PRE if 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR >= 7
+07 DEL  7
+07 NRO 10 7
+07 DEL  7
+07 DEL  7
+07 IDE f 7
+07 OPR < 7
+09 CAD "menÇagem" 9
+10 COM // 10
+10 IDE exemplo 10
+10 IDE de 10
+10 IDE teste 10
+10 IDE do 10
+10 IDE lexico 10
+11 DEL  11
+12 COM /* 12
+12 IDE exa869 12
+12 IDE mi 12
+12 IDE processadores 12
+12 IDE de 12
+13 IDE de 13
+13 IDE programacao 13
+14 DEL  14
+01 NRO 1 1
+01 DEL  1
+01 NRO 3 1
+02 NRO 1 2
+02 NRO 3 2
+02 NRO 3 2
+02 NRO 6 2
+02 NRO 10 2
+03 NRO 6 3
+04 NRO 9 4
+04 IDE a 4
+04 NRO 3 4
+05 NRO 1 5
+05 DEL  5
+05 DEL  5
+05 DEL  5
+05 NRO 2 5
+06 DEL  6
+06 NRO 2 6
+06 NRO 15 6
+07 DEL  7
+07 NRO 12 7
+07 DEL  7
+07 DEL  7
+07 NRO 2 7
