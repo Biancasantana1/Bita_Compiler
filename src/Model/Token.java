@@ -35,4 +35,8 @@ public String toString() {
     return tipo + " " + lexema + " " + linha;
 }
 
+    public void setLexema(String lexema) {
+        this.lexema = lexema;
+    }
+
 }

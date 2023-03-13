@@ -5,6 +5,8 @@
 package Controller;
 
 import Model.Token;
+import java.io.IOException;
+import java.io.PushbackReader;
 import java.util.Arrays;
 
 /**
@@ -14,85 +16,79 @@ import java.util.Arrays;
 public class BitaController {
     private Token token = null;
     
-    public static Token ehIdentificador(String palavra, int numeroLinha) {
+    public static boolean ehIdentificador(String palavra, int numeroLinha) {
         if (palavra == null || palavra.isEmpty()) {
-            return null;
+            return false;
         }
         char primeiroChar = palavra.charAt(0);
         if (!Character.isLetter(primeiroChar)) {
-            return null;
+            return false;
         }
         for (int i = 1; i < palavra.length(); i++) {
             char c = palavra.charAt(i);
             if (!Character.isLetterOrDigit(c) && c != '_') {
-                return null;
+                return false;
             }
         }
-        return new Token("IDE", palavra, numeroLinha);
+        return true;
     }
     
-    public static Token ehNumero(String palavra, int numeroLinha) {
+    public static boolean ehNumero(char c) {
         boolean pontoEncontrado = false;
-        for (int i = 0; i < palavra.length(); i++) {
-            char c = palavra.charAt(i);
-            if (c == '.') {
-                if (pontoEncontrado) {
-                    return null;
-                } else {
-                    pontoEncontrado = true;
-                }
-            } else if (!Character.isDigit(c)) {
-                return null;
-            }
+        if (c == '.') {
+            pontoEncontrado = true;
+        } else if (Character.isDigit(c)) {
+            return true;
         }
-        return new Token("NRO", palavra, numeroLinha);
+            return false;
+        
     }
     
-    public static Token ehOpAritimetico(String palavra, int numeroLinha){
+    public static boolean ehOpAritimetico(String palavra, int numeroLinha){
         if(palavra.equals("+") || palavra.equals("-") || palavra.equals("*") ||
             palavra.equals("/") || palavra.equals("++") || palavra.equals("--")){
-            return new Token("OPA", palavra, numeroLinha);   
+            return true;   
         }
-        return null;
+        return false;
     }
     
     
     
-    public static Token ehOpRelacional(String palavra, int numeroLinha){
+    public static boolean ehOpRelacional(String palavra, int numeroLinha){
         if(palavra.equals("!=") || palavra.equals("==") || palavra.equals("<") ||
             palavra.equals(">") || palavra.equals(">=") || palavra.equals("<=") || palavra.equals("=")){
-            return  new Token("OPR", palavra, numeroLinha);
+            return  true;
         }
-    return null;
+    return false;
     }
     
-    public static Token ehDelimitadorDeComentarioDeLinha(String palavra, int numeroLinha) {
+    public static boolean ehDelimitadorDeComentarioDeLinha(String palavra, int numeroLinha) {
         if (palavra.startsWith("//")) {
-            return new Token("COM", palavra, numeroLinha);
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
-    public static Token ehDelimitadorDeComentarioDeBloco(String palavra, int numeroLinha) {
+    public static boolean ehDelimitadorDeComentarioDeBloco(String palavra, int numeroLinha) {
         if (palavra.startsWith("/*")) {
-            return new Token("COM", palavra, numeroLinha);
+            return true;
         } else if (palavra.endsWith("*/")) {
-            return new Token("COM", palavra, numeroLinha);
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
-    public static Token ehDelimitador(String palavra, int numeroLinha) {
-        if (";,()[]{}".contains(palavra)) {
-            return new Token("DEL", palavra, numeroLinha);
+    public static boolean ehDelimitador(String palavra, int numeroLinha) {
+        if (";,()[]{}.".contains(palavra)) {
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
     
-   public static Token ehPalavraReservada(String palavra, int numeroLinha) {
+   public static boolean ehPalavraReservada(String palavra, int numeroLinha) {
     var palavrasReservadas = Arrays.asList(
             "var", "const",
             "struct", "procedure", "function",
@@ -102,20 +98,20 @@ public class BitaController {
             "true", "false");
 
     if (palavrasReservadas.contains(palavra)) {
-        return new Token("PRE", palavra, numeroLinha);
+        return true;
     } else {
-        return null;
+        return false;
     }
 }
 
     
-    public static Token ehCaracters(String palavra, int numeroLinha) {
+    public static boolean ehCaracters(String palavra, int numeroLinha) {
         if (palavra.length() == 0) {
-            return null; // Palavra vazia não é uma cadeia de caracteres válida
+            return false; // Palavra vazia não é uma cadeia de caracteres válida
         }
         
         if (palavra.charAt(0) != '"' || palavra.charAt(palavra.length() - 1) != '"') {
-            return null; // Cadeia de caracteres deve começar e terminar com aspas duplas
+            return false; // Cadeia de caracteres deve começar e terminar com aspas duplas
         }
 
         for (int i = 1; i < palavra.length() - 1; i++) {
@@ -128,14 +124,43 @@ public class BitaController {
                 // Ignora o caractere de escape e o próximo caractere
                 i++;
             } else if (!Character.isLetterOrDigit(c) && !ehSimbolo(c)) {
-                return null;
+                return false;
             }
         }
 
-        return new Token("CAD", palavra, numeroLinha);
+        return true;
     }
 
     public static boolean ehSimbolo(char c) {
         return ";,()[]{}".contains(Character.toString(c));
+    }
+    
+    public static boolean ehLetra(char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+    }
+
+    public static boolean ehDigito(char c) {
+        return c >= '0' && c <= '9';
+    }
+
+    
+    public static boolean ehDigitoProximo(PushbackReader reader) throws IOException {
+        int nextChar = reader.read();
+        if (nextChar == -1) {
+            return true;
+        }
+        reader.unread(nextChar);
+        return false;    }
+    private static boolean ehLetraProximo(PushbackReader reader) throws IOException {
+        int nextChar = reader.read();
+        if (nextChar == -1) {
+            return true;
+        }
+        reader.unread(nextChar);
+        return false;
+    }
+    public static String[] quebraCaracter(String linha){
+        String[] caracter = linha.split("[\\\\ \\\\]");
+        return caracter;
     }
 }
