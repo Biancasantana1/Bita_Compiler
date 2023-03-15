@@ -32,7 +32,7 @@ public int getLinha() {
 
 @Override
 public String toString() {
-    return tipo + " " + lexema + " " + linha;
+    return linha + " " + tipo + " " + lexema;
 }
 
     public void setLexema(String lexema) {

@@ -19,7 +19,7 @@ public static void main(String[] args) throws IOException {
     List<Token> tokenList = new ArrayList<>();
     List<Token> tokenMalFormadoList = new ArrayList<>();
     int numeroLinha = 1;
-    String lexema;
+    String lexema = "";
     Token token = null;
     
     for (String linha : linhas) {
@@ -47,6 +47,16 @@ public static void main(String[] args) throws IOException {
                     token = null;
                 }    
                 Token novoToken = new Token("ART", lexema, numeroLinha);
+                tokenList.add(novoToken);
+                i++;
+                
+            }
+            else if(BitaController.ehOpLog(c)){
+                if (token != null) {
+                    tokenList.add(token);
+                    token = null;
+                }    
+                Token novoToken = new Token("LOG", lexema, numeroLinha);
                 tokenList.add(novoToken);
                 i++;
                 
@@ -122,27 +132,116 @@ public static void main(String[] args) throws IOException {
 
             else if (BitaController.ehLetra(c)){
                 lexema = "" + c;
+                int aspas = 0;
                 int j = i+1;
+                Token novoToken = null;
+
+                boolean aspasAberta = false;
+
                 while(j < palavra.length() && (BitaController.ehLetra(palavra.charAt(j)) 
-                        || Character.isDigit(palavra.charAt(j)) || palavra.charAt(j) == '"')) {
+                        || Character.isDigit(palavra.charAt(j)) || palavra.charAt(j) == '\"')) {
                     lexema += palavra.charAt(j);
+                     if(palavra.charAt(j) == '\"' ){
+            if(!aspasAberta){
+                aspasAberta = true;
+                    System.out.println(aspasAberta);
+
+                
+            }
+            
+        }
                     j++;
+                    
                 }
                 i = j;
-                Token novoToken;
                 if (BitaController.ehPalavraReservada(lexema)) {
                     novoToken = new Token("PR", lexema, numeroLinha);
                 }
-                else {
+                else if (BitaController.ehIdentificador(lexema)){
                     novoToken = new Token("ID", lexema, numeroLinha);
                 }
+//                else {//if (BitaController.ehCadeiaCaracters(lexema)){
+//                  if(!aspasAberta){
+//        novoToken = new Token("CMF", lexema, numeroLinha);
+//    }
+//    else{
+//        novoToken = new Token("CAC", lexema, numeroLinha);
+//    }
+
+                
                 if (token == null) {
-                    token = novoToken;
+                     token = novoToken;
                 }
                 else {
                     token.setLexema(token.getLexema() + lexema);
                 }
             }
+                else if (c == '"') {
+                        int j = i+1;
+                Token novoToken = null;
+                        //i = j;
+                        while (j < palavra.length()) {
+                            String aux = "" + palavra.charAt(j);
+
+                            if (aux == "\"") {
+                                lexema += aux;
+                                i = j;
+                                j++;
+                                break;
+                            } else {
+                               lexema += aux;
+                                i = j;
+                                j++;
+                            }
+                        }
+
+                        if (lexema.endsWith("\"")) {
+                            novoToken = new Token("CAC", lexema, numeroLinha);
+                            tokenList.add(novoToken);
+                        } else {
+                            novoToken = new Token("CMF", lexema, numeroLinha);
+                            tokenMalFormadoList.add(novoToken);
+                        }
+
+                       // i++;
+    
+                }
+//            else if(BitaController.ehCadeiaCaracters(lexema)){
+//    lexema = "" + c;
+//    boolean aspasAberta = false;
+//    int j = i+1;
+//        Token novoToken = null;
+//
+//    while(j < palavra.length() && (BitaController.ehLetra(palavra.charAt(j)) 
+//            || Character.isDigit(palavra.charAt(j)) || palavra.charAt(j) == '\"')) {
+//        lexema += palavra.charAt(j);
+//        if(palavra.charAt(j) == '\"'){
+//            if(!aspasAberta){
+//                aspasAberta = true;
+//            }
+//            else{
+//                //novoToken = new Token("CCM", lexema, numeroLinha);
+//                break;
+//            }
+//        }
+//        j++;
+//    }
+//    i = j;
+//    if(!aspasAberta){
+//        novoToken = new Token("CMF", lexema, numeroLinha);
+//    }
+//    else{
+//        novoToken = new Token("CAC", lexema, numeroLinha);
+//    }
+//    
+//    if (token == null) {
+//         token = novoToken;
+//    }
+//    else {
+//        token.setLexema(token.getLexema() + lexema);
+//    }
+//}
+
             else {
                 System.out.println("Erro léxico na linha " + numeroLinha + ": caracter inválido " + c);
                 i++;
@@ -152,9 +251,7 @@ public static void main(String[] args) throws IOException {
             tokenList.add(token);
             token = null;
         }
-        else if(BitaController.ehCaracters(palavra)){
-            
-        }
+        
     }
     numeroLinha++;
 }

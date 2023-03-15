@@ -1,0 +1,23 @@
+1 DEL ;
+2 ART +
+2 NUM 10
+3 NUM 1
+3 REL >
+3 NUM 20.6
+4 IDE a
+4 ART +
+4 NUM 3
+5 NUM 1
+6 NUM -2
+6 NUM -15
+7 NUM -12
+ 
+1 NMF 1.
+1 NMF .3
+2 NMF 1.3
+2 NMF .3
+2 NMF .6
+3 NMF .5
+4 NMF 9.
+5 NMF 
+7 NMF 

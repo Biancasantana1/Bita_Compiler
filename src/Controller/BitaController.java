@@ -5,8 +5,6 @@
 package Controller;
 
 import Model.Token;
-import java.io.IOException;
-import java.io.PushbackReader;
 import java.util.Arrays;
 
 /**
@@ -52,6 +50,13 @@ public class BitaController {
         return false;
     }
     
+    public static boolean ehOpLogico(String palavra){
+        if(palavra.equals("!") || palavra.equals("&&") || palavra.equals("||")){
+            return true;   
+        }
+        return false;
+    }
+
     
     
     public static boolean ehOpRelacional(String palavra){
@@ -104,30 +109,30 @@ public class BitaController {
         }
     }
 
-    public static boolean ehCaracters(String palavra) {
-        if (palavra.length() == 0) {
-            return false; // Palavra vazia não é uma cadeia de caracteres válida
-        }
+    public static boolean ehCadeiaCaracters(String palavra) {
+//        if (palavra.length() == 0) {
+//            return false; // Palavra vazia não é uma cadeia de caracteres válida
+//        }
         
-        if (palavra.charAt(0) != '"' || palavra.charAt(palavra.length() - 1) != '"') {
-            return false; // Cadeia de caracteres deve começar e terminar com aspas duplas
-        }
+//        if (palavra.charAt(0) != '"' || palavra.charAt(palavra.length() - 1) != '"') {
+//            return false; // Cadeia de caracteres deve começar e terminar com aspas duplas
+//        }
 
-        for (int i = 1; i < palavra.length() - 1; i++) {
-            if (i < palavra.length() && palavra.charAt(i) == '\\') {
-                i++;
-                continue;
-            }
-            char c = palavra.charAt(i);
-            if (c == '\\') {
-                // Ignora o caractere de escape e o próximo caractere
-                i++;
-            } else if (!Character.isLetterOrDigit(c) && !ehSimbolo(c)) {
-                return false;
-            }
-        }
+//        for (int i = 1; i < palavra.length() - 1; i++) {
+//            if (i < palavra.length() && palavra.charAt(i) == '\\') {
+//                i++;
+//                continue;
+//            }
+//            char c = palavra.charAt(i);
+//            if (c == '\\') {
+//                // Ignora o caractere de escape e o próximo caractere
+//                i++;
+//            } else if (!Character.isLetterOrDigit(c) && !ehSimbolo(c)) {
+//                return false;
+//            }
+//        }
 
-        return true;
+        return  palavra == "\"";
     }
 
     public static boolean ehSimbolo(char c) {
@@ -136,6 +141,9 @@ public class BitaController {
     
     public static boolean ehLetra(char c) {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+    }
+    public static boolean ehOpLog(char c) {
+        return (c == '&' || c == '!' || c == '|');
     }
     
     public static String[] quebraCaracter(String linha){
